@@ -12,6 +12,8 @@ def howManyFives(num):
 
 def factZeros(n):
   fives = 0
-  for i in range(5, n, 5):
+  for i in range(5, n+1, 5):
     fives += howManyFives(i)
   return fives
+
+print(factZeros(125))

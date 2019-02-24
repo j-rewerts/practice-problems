@@ -2,5 +2,16 @@
 # @author CodyGramlich and j-rewerts
 # Calculates the number of zeros in n factorial.
 
+
+def howManyFives(num):
+  fives = 0
+  while num % 5 == 0:
+    num = num / 5
+    fives += 1
+  return fives
+
 def factZeros(n):
-  pass
+  fives = 0
+  for i in range(5, n, 5):
+    fives += howManyFives(i)
+  return fives

@@ -18,9 +18,12 @@ class LRU():
   
   def insert(self, key, value):
     node = Node(value)
+    self.dict[key] = node
+
     if not self.dict:
-      self.dict[key] = node
       self.tail = node
+      self.head = node
+    else:
       self.head = node
 
 myCache = LRU(4)

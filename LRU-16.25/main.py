@@ -25,6 +25,7 @@ class LRU():
       self.tail = node
       self.head = node
     else:
+      self.head.next = node
       self.head = node
 
     if len(self.dict) > self.maxSize:

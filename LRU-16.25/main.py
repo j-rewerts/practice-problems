@@ -4,6 +4,7 @@ class Node():
   def __init__(self, key, value):
     self.key = key
     self.value = value
+    self.prev = None
     self.next = None
   
 
@@ -15,7 +16,13 @@ class LRU():
     self.head = None
 
   def get(self, key):
-    pass
+    node = self.dict[key]
+    node.prev.next = node.next
+    node.next.prev = node.prev
+    del self.dict[key]
+    
+    self.head = node
+    return node.value
   
   def insert(self, key, value):
     node = Node(key, value)
@@ -24,13 +31,16 @@ class LRU():
       self.tail = node
       self.head = node
     else:
+      node.prev = self.head
       self.head.next = node
       self.head = node
+
     self.dict[key] = node
 
     if len(self.dict) > self.maxSize:
       discard = self.tail
       self.tail = discard.next
+      self.tail.prev = None
       del self.dict[discard.key]
 
 myCache = LRU(4)

@@ -1,7 +1,8 @@
 from queue import Queue
 
 class Node():
-  def __init__(self, value):
+  def __init__(self, key, value):
+    self.key = key
     self.value = value
     self.next = Node(None)
   
@@ -17,7 +18,7 @@ class LRU():
     pass
   
   def insert(self, key, value):
-    node = Node(value)
+    node = Node(key, value)
     self.dict[key] = node
 
     if not self.dict:
@@ -25,5 +26,10 @@ class LRU():
       self.head = node
     else:
       self.head = node
+
+    if len(self.dict) > self.maxSize:
+      discard = self.tail
+      self.tail = discard.next
+      del self.dict[discard.key]
 
 myCache = LRU(4)

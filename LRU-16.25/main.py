@@ -18,7 +18,7 @@ class LRU():
   
   def insert(self, key, value):
     node = Node(value)
-    if len(self.dict) == 0:
+    if not self.dict:
       self.dict[key] = node
       self.tail = node
       self.head = node

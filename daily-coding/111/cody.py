@@ -7,6 +7,6 @@ def findIndices(S, W):
             indices.append(i)
     return indices
 
-W = "ab"
-S = "abxaba"
-print(findIndices(S, W))
+print(findIndices('abxaba', 'ab'))
+print(findIndices('abxaba', 'aa'))
+print(findIndices('abxaaba', 'aa'))

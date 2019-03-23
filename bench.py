@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import yaml
+import time
 
 FILE = './benchmarks.yml'
 
@@ -13,5 +14,8 @@ with open(FILE, 'r') as stream:
 for test in config['tests']:
   print(test['name'])
   for run in test['work']:
+    start = time.time()
     print('Running ' + run['name'])
     exec(open(run['source']).read())
+    print("--- %s seconds ---" % (time.time() - start))
+

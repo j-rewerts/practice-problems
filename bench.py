@@ -14,3 +14,4 @@ for test in config['tests']:
   print(test['name'])
   for run in test['work']:
     print('Running ' + run['name'])
+    exec(open(run['source']).read())

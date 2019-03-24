@@ -59,28 +59,40 @@ class BenchWriter:
       print(self.headerTmpl.format(spaceRow, '', ''))
     print(self.lineBreakAltTmpl.format(''))
 
-with open(FILE, 'r') as stream:
-  try:
-    config = yaml.safe_load(stream)
-  except yaml.YAMLError as exc:
-    print(exc)
+# Parses a YAML file into a Bench config object.
+def getConfig(file):
+  with open(file, 'r') as stream:
+    try:
+      config = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+      print(exc)
+  return config
 
-testResults = {}
-for test in config['tests']:
-  testResults[test['name']] = {}
-  for run in test['work']:
-    start = time.time()
-    exec(open(run['source']).read())
-    testResults[test['name']][run['name']] = {
-      'time': time.time() - start,
-      'source': run['source']
-    }
+# Runs the tests defined in config.
+def runBench(config):
+  results = {}
+  for test in config['tests']:
+    results[test['name']] = {}
+    for run in test['work']:
+      start = time.time()
+      exec(open(run['source']).read())
+      results[test['name']][run['name']] = {
+        'time': time.time() - start,
+        'source': run['source']
+      }
+  return results
 
-# Print results
-bench = BenchWriter()
-bench.writeHeader()
+# Prints the output of the runs.
+def printBench(results):
+  # Print results
+  bench = BenchWriter()
+  bench.writeHeader()
 
-test = 1
-for name, value in testResults.items():
-  bench.writeBench(value, '#' + str(test))
-  test += 1
+  test = 1
+  for name, value in results.items():
+    bench.writeBench(value, '#' + str(test))
+    test += 1
+
+config = getConfig(FILE)
+results = runBench(config)
+printBench(results)

@@ -2,6 +2,6 @@ tests:
   - name: circ
     work:
       - name: jared
-        source: './circular-array/jared.py'
+        source: './cci/circular-array/jared.py'
       - name: cody
-        source: './circular-array/cody.py'
+        source: './cci/circular-array/cody.py'

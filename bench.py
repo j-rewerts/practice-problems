@@ -15,6 +15,7 @@ P  = '\033[35m' # purple
 
 print(R+"hello how are you"+W)
 
+# Helps with writing well formatted test runs.
 class BenchWriter:
   lineBreakTmpl = '{:*^80}'
   lineBreakAltTmpl = '{:-^80}'
@@ -22,6 +23,7 @@ class BenchWriter:
   headerTmpl = '|{:^8}|{:^12}|{:^56}|'
   headers = ['test #', 'runner', 'results']
 
+  # Writes out a header
   def writeHeader(self):
     print(self.lineBreakTmpl.format(''))
     print(self.headerTmpl.format('TEST #', 'RUNNER', 'RESULTS'))
@@ -44,13 +46,13 @@ class BenchWriter:
     for key, value in obj.items():
       row += 1
 
-      # We try to print the test name in the middle
+      # We try to print the test name in the middle.
       if row == middle:
         runRow = testName
       else:
         runRow = ''
       print(self.headerTmpl.format(runRow, key, value['time']))
-
+      # Again, we're trying to identify when to write the test name.
       row += 1
       if row == middle:
         spaceRow = testName
@@ -84,7 +86,6 @@ def runBench(config):
 
 # Prints the output of the runs.
 def printBench(results):
-  # Print results
   bench = BenchWriter()
   bench.writeHeader()
 

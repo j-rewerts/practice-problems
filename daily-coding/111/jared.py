@@ -45,3 +45,4 @@ def areDictsSame(dict1, dict2):
 print(getIndices('abxaba', 'ab'))
 print(getIndices('abxaba', 'aa'))
 print(getIndices('abxaaba', 'aa'))
+print(getIndices('abaabax', 'baab'))

@@ -17,6 +17,10 @@ P  = '\033[35m' # purple
 
 print(R+"hello how are you"+W)
 
+# This string formatter allows you to define a default dictionary to look
+# for values in. These can be overridden by using the kwargs from the regular
+# string formatter.
+# @param defaults A dict of default kwargs to use.
 class DefaultFormatter(Formatter):
   def __init__(self, defaults={}):
     Formatter.__init__(self)

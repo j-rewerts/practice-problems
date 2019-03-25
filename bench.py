@@ -91,7 +91,7 @@ def printBench(results):
   bench.writeHeader()
 
   test = 1
-  for name, value in results.items():
+  for _, value in results.items():
     bench.writeBench(value, '#' + str(test))
     test += 1
 

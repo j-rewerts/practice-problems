@@ -16,8 +16,11 @@ def getIndices(word, sub):
 
     return indices
 
-print('getIndices')
 print(getIndices('abxaba', 'ab'))
 print(getIndices('abxaba', 'aa'))
 print(getIndices('abxaaba', 'aa'))
 print(getIndices('abaabax', 'baab'))
+print(getIndices('abaabaxzasdjhfbjkhsdfjhgasdfakjshgfjhgfvahjsgdf', 'asg'))
+print(getIndices('qwertyytrewqqwertyytrewq', 'qwer'))
+print(getIndices('zxcvbnmmnbvcxzzxcvbnmmnbvcxzzxcvbnm', 'zxcvbnmmnbvcxz'))
+print(getIndices('qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.qwertyuiop[]asdfghjkl;zxcvbnm,.', '.,mnbvcxz;lkjhgfdsa][poiuytrewq'))

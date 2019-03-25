@@ -1,7 +1,13 @@
 tests:
-  - name: circ
+  - name: 'circ list'
     work:
       - name: jared
         source: './cci/circular-array/jared.py'
       - name: cody
         source: './cci/circular-array/cody.py'
+  - name: 'sub indices'
+    work:
+      - name: jared
+        source: './daily-coding/111/jared.py'
+      - name: cody
+        source: './daily-coding/111/cody.py'

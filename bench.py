@@ -80,7 +80,7 @@ def runBench(config):
       start = time.time()
       exec(open(run['source']).read(), globals())
       results[test['name']][run['name']] = {
-        'time': time.time() - start,
+        'time': str((time.time() - start) * 1000) + ' ms',
         'source': run['source']
       }
   return results

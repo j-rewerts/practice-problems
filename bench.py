@@ -4,6 +4,7 @@ import yaml
 import time
 import math
 import importlib
+from string import Formatter
 
 FILE = './benchmarks.yml'
 
@@ -16,19 +17,41 @@ P  = '\033[35m' # purple
 
 print(R+"hello how are you"+W)
 
+class DefaultFormatter(Formatter):
+  def __init__(self, defaults={}):
+    Formatter.__init__(self)
+    self.defaults = defaults
+  
+  def get_value(self, key, args, kwds):
+    if isinstance(key, str):
+      try:
+        return kwds[key]
+      except KeyError:
+        return self.defaults[key]
+    else:
+      fmt = Formatter()
+      return fmt.get_value(key, args, kwds)
+
 # Helps with writing well formatted test runs.
 class BenchWriter:
-  lineBreakTmpl = '{:*^80}'
-  lineBreakAltTmpl = '{:-^80}'
-  spacerTmpl = '{:^80}'
-  headerTmpl = '|{:^8}|{:^12}|{:^56}|'
+  LINE_LENGTH = 80
+  lineBreakTmpl = '{:*^{length!s}}'
+  lineBreakAltTmpl = '{:-^{length!s}}'
+  spacerTmpl = '{:^{length!s}}'
+  headerTmpl = '|{:^{testLength}}|{:^{runnerLength}}|{:^{detailsLength}}|'
   headers = ['test #', 'runner', 'results']
+  fmt = DefaultFormatter({
+    'length': 80,
+    'testLength': 8,
+    'runnerLength': 12,
+    'detailsLength': 56
+  })
 
   # Writes out a header
   def writeHeader(self):
-    print(self.lineBreakTmpl.format(''))
-    print(self.headerTmpl.format('TEST #', 'RUNNER', 'RESULTS'))
-    print(self.lineBreakTmpl.format(''))
+    print(self.fmt.format(self.lineBreakTmpl, ''))
+    print(self.fmt.format(self.headerTmpl, 'TEST #', 'RUNNER', 'RESULTS'))
+    print(self.fmt.format(self.lineBreakTmpl, ''))
 
   # Writes out a benchmark in the form:
   # |        |            |                                                        |
@@ -42,7 +65,7 @@ class BenchWriter:
     numLines = 2 * numRunners + 1
     middle = math.floor(numLines/2)+1
 
-    print(self.headerTmpl.format('', '', ''))
+    print(self.fmt.format(self.headerTmpl, '', '', ''))
     row = 1
     for key, value in obj.items():
       row += 1
@@ -52,15 +75,15 @@ class BenchWriter:
         runRow = testName
       else:
         runRow = ''
-      print(self.headerTmpl.format(runRow, key, value['time']))
+      print(self.fmt.format(self.headerTmpl, runRow, key, value['time']))
       # Again, we're trying to identify when to write the test name.
       row += 1
       if row == middle:
         spaceRow = testName
       else:
         spaceRow = ''
-      print(self.headerTmpl.format(spaceRow, '', ''))
-    print(self.lineBreakAltTmpl.format(''))
+      print(self.fmt.format(self.headerTmpl, spaceRow, '', ''))
+    print(self.fmt.format(self.lineBreakAltTmpl, ''))
 
 # Parses a YAML file into a Bench config object.
 def getConfig(file):

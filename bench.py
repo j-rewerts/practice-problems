@@ -78,9 +78,7 @@ def runBench(config):
     results[test['name']] = {}
     for run in test['work']:
       start = time.time()
-      # exec(open(run['source']).read())
-      # import run['source']
-      importlib.import_module(run['source'], 'bench.')
+      exec(open(run['source']).read(), globals())
       results[test['name']][run['name']] = {
         'time': time.time() - start,
         'source': run['source']

@@ -50,7 +50,8 @@ class BenchWriter:
   # Writes out a header
   def writeHeader(self):
     print(self.fmt.format(self.lineBreakTmpl, ''))
-    print(self.fmt.format(self.headerTmpl, 'TEST #', 'RUNNER', 'RESULTS'))
+    print(self.fmt.format(self.headerTmpl, P+'TEST #'+W, P+'RUNNER'+W, P+'RESULTS'+W, 
+      testLength=17, runnerLength=21, detailsLength=65))
     print(self.fmt.format(self.lineBreakTmpl, ''))
 
   # Writes out a benchmark in the form:

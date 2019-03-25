@@ -80,7 +80,15 @@ class BenchWriter:
         runRow = testName
       else:
         runRow = ''
-      print(self.fmt.format(self.headerTmpl, runRow, key, value['time']))
+      
+      # Add color to time based on status
+      if value.get('winner', False):
+        value['time'] = G+value['time']+W
+      else:
+        value['time'] = R+value['time']+W
+      print(self.fmt.format(self.headerTmpl, runRow, key, value['time'], 
+        detailsLength=65))
+        
       # Again, we're trying to identify when to write the test name.
       row += 1
       if row == middle:
@@ -111,7 +119,16 @@ def runBench(config):
         'time': str((time.time() - start) * 1000) + ' ms',
         'source': run['source']
       }
+
+  # Crown a winner for every test
+  for test, value in results.items():
+    findWinner(value)['winner'] = True
+
   return results
+
+# Evaluates a test result to identify who ran faster.
+def findWinner(test):
+  return min(test.values(), key=lambda d: d.get('time', float('inf')))
 
 # Prints the output of the runs.
 def printBench(results):

@@ -1,12 +1,3 @@
-def findIndices(S, W):
-    indices = []
-    length = len(W)
-    for i in range(len(S) - len(W) + 1):
-        A = S[i:i+length]
-        if set(A) == set(W):
-            indices.append(i)
-    return indices
-
 def getIndices(word, sub):
     indices = []
     subDict = {}
@@ -24,12 +15,6 @@ def getIndices(word, sub):
             indices.append(i)
 
     return indices
-
-print('findIndices')
-print(findIndices('abxaba', 'ab'))
-print(findIndices('abxaba', 'aa'))
-print(findIndices('abxaaba', 'aa'))
-print(findIndices('abaabax', 'baab'))
 
 print('getIndices')
 print(getIndices('abxaba', 'ab'))

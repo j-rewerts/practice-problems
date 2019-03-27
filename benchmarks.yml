@@ -11,3 +11,7 @@ tests:
         source: './daily-coding/111/jared.py'
       - name: cody
         source: './daily-coding/111/cody.py'
+  - name: '118'
+    work:
+      - name: jared
+        source: './daily-coding/118/jared.py'

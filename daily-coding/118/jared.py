@@ -26,3 +26,5 @@ def squareSort(ints):
 print(squareSort([-9, -2, 0, 2, 3]))
 print(squareSort([1, 2, 3, 4]))
 print(squareSort([-9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
+print(squareSort([-50, -20, -10]))
+print(squareSort([-50, -20, -10, -5]))

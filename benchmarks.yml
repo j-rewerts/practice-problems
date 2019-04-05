@@ -15,3 +15,5 @@ tests:
     work:
       - name: jared
         source: './daily-coding/121/jared.py'
+      - name: cody
+        source: './daily-coding/121/cody.py'

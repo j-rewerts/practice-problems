@@ -63,3 +63,12 @@ print(canBePalindrome(0, 'aa')) # True
 print(canBePalindrome(0, 'aba')) # True
 print(canBePalindrome(0, 'abca')) # False
 print(canBePalindrome(1, 'abca')) # True
+
+print(canBePalindrome(0, "waterrfetawx")) # False
+print(canBePalindrome(1, "waterrfetaw")) # True
+print(canBePalindrome(0, "banana")) # False
+print(canBePalindrome(1, "banana")) # True
+print(canBePalindrome(2, "bananad")) # True
+print(canBePalindrome(1, "bananad")) # False
+print(canBePalindrome(3, "bananfad")) # True
+print(canBePalindrome(2, "banafad")) # False
